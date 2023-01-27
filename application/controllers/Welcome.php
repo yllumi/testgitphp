@@ -33,6 +33,7 @@ class Welcome extends CI_Controller {
 		$git = new CzProject\GitPhp\Git;
 		$repo = $git->open('/var/www/html/nyoba');
 
+		shell_exec('whoami');
 		print_r($repo->execute('log'));
 		print_r($repo->execute('config', '--global', 'user.name'));
 		print_r($repo->execute('config', '--global', 'user.email'));
