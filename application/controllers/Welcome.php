@@ -25,9 +25,15 @@ class Welcome extends CI_Controller {
 
 	public function push()
 	{
+		echo shell_exec('whoami');
+
 		$git = new CzProject\GitPhp\Git;
 		$repo = $git->open('/var/www/html/nyoba');
-		$repo->push(['origin', 'main']);
+		try {
+			$repo->push(['origin', 'main']);
+		} catch (\CzProject\GitPhp\GitException $e) {
+			var_dump($e->getRunnerResult()->toText());
+		}
 	}
 
 	public function config()
