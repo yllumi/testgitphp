@@ -29,9 +29,10 @@ class Welcome extends CI_Controller {
 
 		$git = new CzProject\GitPhp\Git;
 		$repo = $git->open('/var/www/html/nyoba');
-		$repo->pull('origin');
+
 		try {
-			$repo->push('origin');
+			$repo->pull(['origin','main']);
+			$repo->push(['origin','main'], ['-u']);
 		} catch (\CzProject\GitPhp\GitException $e) {
 			var_dump($e->getRunnerResult()->toText());
 		}
