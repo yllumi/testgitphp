@@ -5,6 +5,8 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
+		echo shell_exec('whoami');
+
 		$git = new CzProject\GitPhp\Git;
 		$repo = $git->cloneRepository('git@github.com:yllumi/nyoba.git', '/var/www/html/nyoba');
 	}
@@ -33,7 +35,7 @@ class Welcome extends CI_Controller {
 		$git = new CzProject\GitPhp\Git;
 		$repo = $git->open('/var/www/html/nyoba');
 
-		shell_exec('whoami');
+		echo shell_exec('whoami');
 		print_r($repo->execute('log'));
 		print_r($repo->execute('config', '--global', 'user.name'));
 		print_r($repo->execute('config', '--global', 'user.email'));
